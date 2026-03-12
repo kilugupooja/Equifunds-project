@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>EquiFunds</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:#c01d9d;
+  color:white;
+}
+
+/* NAVBAR */
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 60px;
+  position:fixed;
+  width:100%;
+  top:0;
+  background:rgba(15,23,42,0.8);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:700;
+  background:linear-gradient(45deg,#ff6ec4,#7873f5);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.nav-links a{
+  margin-left:30px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.nav-links a:hover{
+  color:#ff6ec4;
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+  background: 
+    linear-gradient(rgba(15,23,42,0.6), rgba(15,23,42,0.6)),
+    url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+}
+
+.hero h1{
+  font-size:48px;
+  margin-bottom:20px;
+}
+
+.hero span{
+  background:linear-gradient(45deg,#ff6ec4,#7873f5);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+  margin-bottom:30px;
+  color:#cbd5e1;
+}
+
+button{
+  padding:12px 28px;
+  margin:10px;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.primary-btn{
+  background:linear-gradient(45deg,#ff6ec4,#7873f5);
+  color:rgb(150, 22, 192);
+}
+
+.secondary-btn{
+  background:transparent;
+  border:2px solid #7873f5;
+  color:white;
+}
+
+/* SECTIONS */
+.section{
+  padding:100px 60px;
+  text-align:center;
+}
+
+.features{
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  flex-wrap:wrap;
+}
+
+.card{
+  background:#1e293b;
+  padding:30px;
+  width:260px;
+  border-radius:20px;
+}
+
+/* SYSTEM PAGES */
+.overlay{
+  min-height:100vh;
+  padding-top:120px;
+  text-align:center;
+  background:#0f172a;
+}
+
+input, select{
+  padding:10px;
+  margin:10px;
+  border-radius:6px;
+  border:none;
+  width:220px;
+}
+
+.hidden{display:none;}
+
+.chat-box{
+  width:300px;
+  height:150px;
+  overflow-y:auto;
+  margin:10px auto;
+  background:rgba(255,255,255,0.1);
+  padding:10px;
+  border-radius:10px;
+}
+
+.connection-card{
+  background:#1e293b;
+  padding:15px 20px;
+  margin:10px auto;
+  width:280px;
+  border-radius:12px;
+  cursor:pointer;
+  transition:0.2s;
+  text-align:left;
+}
+
+.connection-card:hover{
+  background:#2c3e50;
+}
+
+.connection-options{
+  display:flex;
+  justify-content:space-around;
+  margin-top:10px;
+}
+a{color:#ff6ec4;text-decoration:none;}
+a:hover{text-decoration:underline;}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo">EquiFunds</div>
+  <div class="nav-links">
+    <a onclick="scrollToSection('about')">About</a>
+    <a onclick="scrollToSection('features')">Features</a>
+    <a onclick="showJoin()">Join</a>
+  </div>
+</div>
+
+<!-- LANDING PAGE -->
+<div id="landing">
+
+<section class="hero">
+  <div>
+    <h1>Empowering <span>Women Founders</span><br>With Strategic Capital</h1>
+    <p>Where Strategy Meets Success</p>
+    <button class="primary-btn" onclick="showJoin()">Get Started</button>
+    <button class="secondary-btn" onclick="scrollToSection('about')">Learn More</button>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <h2>About EquiFunds</h2>
+  <p style="max-width:700px;margin:auto;color:#cbd5e1;">
+    EquiFunds bridges the funding gap for women-led startups by connecting
+    visionary entrepreneurs with aligned investors.
+  </p>
+</section>
+
+<section class="section" id="features">
+  <h2>Platform Features</h2>
+  <div class="features">
+    <div class="card">
+      <h3>Digital Pitch Deck</h3>
+      <p>Create and upload startup profiles professionally.</p>
+    </div>
+    <div class="card">
+      <h3>Investor Matching</h3>
+      <p>Smart connections between founders and capital partners.</p>
+    </div>
+    <div class="card">
+      <h3>Growth Tracking</h3>
+      <p>Monitor funding rounds and business progress.</p>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<!-- ROLE PAGE -->
+<div id="join" class="overlay hidden">
+  <h1>Select Your Role</h1>
+  <button onclick="selectRole('Entrepreneur')">Entrepreneur</button>
+  <button onclick="selectRole('Investor')">Investor</button>
+  <br><br>
+  <section class="section" id="features">
+    <h2>Platform Features</h2>
+    <div class="features-grid">
+      <div class="feature-box">
+        <h3>Digital Pitch Deck</h3>
+        <p>Create and upload startup profiles professionally.</p>
+      </div>
+      <div class="feature-box">
+        <h3>Investor Matching</h3>
+        <p>Smart connections between founders and capital partners.</p>
+      </div>
+      
+      
+      
+      <div class="feature-box">
+        <h3>Scheduling Meetings</h3>
+        <p>Set up calls or meetings with investors or founders directly.</p>
+      </div>
+      <div class="feature-box">
+        <h3>Analytics Dashboard</h3>
+        <p>Track performance, funding trends, and investor engagement in real-time.</p>
+      </div>
+    </div>
+  </section>
+  
+  <style>
+  .features-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap:20px;
+    justify-items:center;
+    margin-top:30px;
+  }
+  
+  .feature-box{
+    background:#1e293b;
+    border:2px solid #2c3e50;
+    border-radius:16px;
+    padding:20px;
+    width:100%;
+    text-align:center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    transition: 0.3s;
+  }
+  
+  .feature-box:hover{
+    border-color:#ff6ec4;
+    box-shadow:0 8px 20px rgba(255,110,196,0.3);
+    transform: translateY(-5px);
+  }
+  </style>
+  <button onclick="goHome()">Back</button>
+</div>
+
+<!-- LOGIN -->
+<div id="login" class="overlay hidden">
+  <h1 id="roleTitle"></h1>
+
+  <input type="text" id="email" placeholder="Email"><br>
+  <input type="password" id="password" placeholder="Password"><br>
+
+  <button onclick="loginSuccess()">Login</button>
+
+  <p style="margin:15px 0; color:#cbd5e1;">or continue with</p>
+
+  <!-- Social Login Buttons -->
+  <button class="social-btn google-btn" onclick="alert('Continue with Google')">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" 
+         style="width:20px; vertical-align:middle; margin-right:8px;">
+    Continue with Google
+  </button><br>
+
+  <button class="social-btn linkedin-btn" onclick="alert('Continue with LinkedIn')">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" 
+         style="width:20px; vertical-align:middle; margin-right:8px;">
+    Continue with LinkedIn
+  </button>
+
+</div>
+
+<style>
+.social-btn{
+  padding:12px 20px;
+  width:240px;
+  margin:5px auto;
+  display:block;
+  border:none;
+  border-radius:30px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+  text-align:center;
+  color:white;
+}
+
+.google-btn{
+  background:#db4437;
+}
+
+.google-btn:hover{
+  background:#c1351d;
+}
+
+.linkedin-btn{
+  background:#0077b5;
+}
+
+.linkedin-btn:hover{
+  background:#005983;
+}
+</style>
+
+
+<!-- PERSONAL DETAILS FORM -->
+<div id="detailsForm" class="overlay hidden">
+  <h1 id="detailsTitle"></h1>
+  
+  <!-- Entrepreneur Form -->
+<div id="entrepreneurForm" class="hidden">
+  <input type="text" placeholder="Full Name"><br>
+  
+<select id="gender" name="gender" required>
+  <option value="">Select Gender</option>
+  <option value="female">Female</option>
+  <option value="male">Male</option>
+  <option value="other">Other</option>
+  <option value="prefer-not">Prefer not to say</option>
+</select><br><br>
+  <input type="text" placeholder="Startup Name"><br>
+  <input type="text" placeholder="Industry"><br>
+  <input type="number" placeholder="Years of Experience"><br>
+
+  <!-- Custom File Upload -->
+  <div style="position:relative; display:inline-block; width:220px; margin:10px 0;">
+    <input type="file" id="proofID" accept=".jpg,.jpeg,.png,.pdf" 
+           style="width:100%; padding:10px; border-radius:6px; border:none; opacity:0; z-index:2; position:relative;">
+    <div id="fileLabel" 
+         style="position:absolute; top:0; left:0; width:100%; padding:10px; border-radius:6px; 
+                background:rgba(255,255,255,0.1); color:#cbd5e1; pointer-events:none;">
+      Valid Proof ID
+    </div>
+  </div><br>
+
+  <button onclick="submitDetails()">Next</button>
+</div>
+
+<script>
+const proofInput = document.getElementById('proofID');
+const fileLabel = document.getElementById('fileLabel');
+
+proofInput.addEventListener('change', () => {
+  if(proofInput.files.length > 0){
+    fileLabel.textContent = proofInput.files[0].name;
+  } else {
+    fileLabel.textContent = 'Valid Proof ID';
+  }
+});
+</script>
+
+  <!-- Investor Form -->
+  <div id="investorForm" class="hidden">
+    <input type="text" placeholder="Full Name"><br>
+    <input type="text" placeholder="Company/Fund Name"><br>
+    <input type="text" placeholder="Sector Focus"><br>
+    <input type="number" placeholder="Investment Experience (Years)"><br>
+    <button onclick="submitDetails()">Next</button>
+  </div>
+
+  <br>
+  <button onclick="backToLogin()">Back</button>
+</div>
+
+<!-- EXTRA DETAILS FORM -->
+<div id="extraDetailsForm" class="overlay hidden">
+  <h1>Additional Details</h1>
+
+  <input type="text" id="location" placeholder="City / Location"><br>
+  <input type="file" id="uploadDocs"><br>
+  <button onclick="goToDashboard()">Next</button>
+  <br><br>
+  <button onclick="backToPersonalDetails()">Back</button>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="overlay hidden">
+  <h1 id="dashboardTitle"></h1>
+  <p>Welcome to your dashboard</p>
+  <button onclick="openConnections()">Go To Connections</button>
+  <br><br>
+  <button onclick="goHome()">Logout</button>
+</div>
+
+<!-- CONNECTIONS -->
+<div id="connectionsPage" class="overlay hidden">
+  <h1>Connections</h1>
+  <div id="connectionsList"></div>
+
+  <div id="chatSection" class="hidden">
+    <h3>Chat / Call</h3>
+    <div class="chat-box" id="chatBox"></div>
+    <input type="text" id="chatInput" placeholder="Type message">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <br>
+  <button onclick="backToDashboard()">Back</button>
+</div>
+
+<script>
+let selectedRole="";
+
+// Sample multiple entrepreneurs and investors with website links
+const entrepreneurs = [
+  {name:"Alice Startup", industry:"HealthTech", experience:5, website:"https://alicestartup.com"},
+  {name:"Bea Ventures", industry:"EdTech", experience:3, website:"https://beaventures.com"},
+  {name:"Clara Labs", industry:"FinTech", experience:4, website:"https://claralabs.com"},
+  {name:"Diana Tech", industry:"AgriTech", experience:6, website:"https://dianatech.com"},
+  {name:"Ella Innovations", industry:"HealthTech", experience:2, website:"https://ellainnovations.com"},
+  {name:"Fiona Solutions", industry:"EduTech", experience:3, website:"https://fionasolutions.com"}
+];
+
+const investors = [
+  {name:"SheCapital Ventures", fund:500000, sector:"HealthTech", website:"https://shecapital.com"},
+  {name:"WomenRise Fund", fund:750000, sector:"EdTech", website:"https://womenrisefund.com"},
+  {name:"TechNova Women", fund:600000, sector:"FinTech", website:"https://technova.com"},
+  {name:"HerHealth Labs", fund:400000, sector:"HealthTech", website:"https://herhealthlabs.com"},
+  {name:"Empower Capital", fund:850000, sector:"AgriTech", website:"https://empowercapital.com"},
+  {name:"Femme Investors", fund:950000, sector:"EduTech", website:"https://femmeinvestors.com"},
+  {name:"Nova Growth", fund:700000, sector:"FinTech", website:"https://novagrowth.com"},
+  {name:"Spark Women Capital", fund:500000, sector:"Tech", website:"https://sparkwomencapital.com"}
+];
+
+function scrollToSection(id){
+  document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+
+function showJoin(){
+  document.getElementById("landing").classList.add("hidden");
+  document.getElementById("join").classList.remove("hidden");
+}
+
+function selectRole(role){
+  selectedRole=role;
+  document.getElementById("join").classList.add("hidden");
+  document.getElementById("login").classList.remove("hidden");
+  document.getElementById("roleTitle").innerText=role+" Login";
+}
+
+function loginSuccess(){
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  if(email==="" || !email.includes("@")){
+    alert("Enter a valid email"); return;
+  }
+  if(password===""){ alert("Enter password"); return; }
+
+  document.getElementById("login").classList.add("hidden");
+  document.getElementById("detailsForm").classList.remove("hidden");
+  document.getElementById("detailsTitle").innerText = selectedRole + " Details";
+
+  if(selectedRole === "Entrepreneur"){
+    document.getElementById("entrepreneurForm").classList.remove("hidden");
+    document.getElementById("investorForm").classList.add("hidden");
+  } else {
+    document.getElementById("investorForm").classList.remove("hidden");
+    document.getElementById("entrepreneurForm").classList.add("hidden");
+  }
+}
+
+function submitDetails(){
+  document.getElementById("detailsForm").classList.add("hidden");
+  document.getElementById("extraDetailsForm").classList.remove("hidden");
+}
+
+function backToPersonalDetails(){
+  document.getElementById("extraDetailsForm").classList.add("hidden");
+  document.getElementById("detailsForm").classList.remove("hidden");
+}
+
+function goToDashboard(){
+  const location = document.getElementById("location").value.trim();
+  if(location===""){ alert("Enter location"); return; }
+
+  document.getElementById("extraDetailsForm").classList.add("hidden");
+  document.getElementById("dashboard").classList.remove("hidden");
+  document.getElementById("dashboardTitle").innerText = selectedRole + " Dashboard";
+}
+
+function backToLogin(){
+  document.getElementById("detailsForm").classList.add("hidden");
+  document.getElementById("login").classList.remove("hidden");
+}
+
+function openConnections(){
+  document.getElementById("dashboard").classList.add("hidden");
+  document.getElementById("connectionsPage").classList.remove("hidden");
+
+  const container = document.getElementById("connectionsList");
+  container.innerHTML = "";
+
+  if(selectedRole==="Entrepreneur"){
+    investors.forEach(inv=>{
+      const div = document.createElement("div");
+      div.className = "connection-card";
+      div.innerHTML = `<strong>${inv.name}</strong><br>
+                       Fund: $${inv.fund}<br>
+                       Sector: ${inv.sector}<br>
+                       Website: <a href="${inv.website}" target="_blank">${inv.website}</a>`;
+      div.onclick = ()=>showConnectionOptions(inv.name);
+      container.appendChild(div);
+    });
+  } else {
+    entrepreneurs.forEach(ent=>{
+      const div = document.createElement("div");
+      div.className = "connection-card";
+      div.innerHTML = `<strong>${ent.name}</strong><br>
+                       Industry: ${ent.industry}<br>
+                       Experience: ${ent.experience} yrs<br>
+                       Website: <a href="${ent.website}" target="_blank">${ent.website}</a>`;
+      div.onclick = ()=>showConnectionOptions(ent.name);
+      container.appendChild(div);
+    });
+  }
+}
+
+function showConnectionOptions(name){
+  document.getElementById("chatSection").classList.remove("hidden");
+  const time = new Date().toLocaleTimeString();
+  document.getElementById("chatBox").innerHTML = `<p><strong>Connected to ${name}</strong> [${time}]</p>
+  <div class="connection-options">
+    <button onclick="alert('Messaging ${name}')">Message</button>
+    <button onclick="alert('Calling ${name}')">Call</button>
+    <button onclick="alert('Visit Website for ${name}')">Visit Website</button>
+  </div>`;
+}
+
+function sendMessage(){
+  const chatInput=document.getElementById("chatInput");
+  const chatBox=document.getElementById("chatBox");
+  if(chatInput.value.trim()!==""){
+    const time = new Date().toLocaleTimeString();
+    chatBox.innerHTML+=`<p>• [${time}] ${chatInput.value}</p>`;
+    chatInput.value="";
+    chatBox.scrollTop=chatBox.scrollHeight;
+  }
+}
+
+function backToDashboard(){
+  document.getElementById("connectionsPage").classList.add("hidden");
+  document.getElementById("dashboard").classList.remove("hidden");
+}
+
+function goHome(){
+  location.reload();
+}
+</script>
+
+</body>
+</html>
